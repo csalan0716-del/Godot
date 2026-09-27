@@ -15,6 +15,19 @@ height = 0.8
 [sub_resource type="BoxMesh" id="BoxMesh_yaxjh"]
 size = Vector3(0.35, 0.18, 0.18)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wiqrh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4kkt8"]
+top_radius = 0.055
+bottom_radius = 0.055
+height = 0.35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5h6n2"]
+top_radius = 0.1
+bottom_radius = 0.07
+height = 1.3
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_pttq6"]
 size = Vector3(20, 1, 20)
 
@@ -66,6 +79,17 @@ mesh = SubResource("CylinderMesh_pttq6")
 [node name="Head" type="MeshInstance3D" parent="Player/Camera3D/Hammer" unique_id=1389108053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
 mesh = SubResource("BoxMesh_yaxjh")
+
+[node name="BaseballBat" type="Node3D" parent="Player/Camera3D" unique_id=1119489675]
+transform = Transform3D(1, 0, 0, 0, 0.9996101, -0.02792164, 0, 0.02792164, 0.9996101, 0.35, -0.35, -0.8)
+
+[node name="Grip" type="MeshInstance3D" parent="Player/Camera3D/BaseballBat" unique_id=1552878642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+material_override = SubResource("StandardMaterial3D_wiqrh")
+mesh = SubResource("CylinderMesh_4kkt8")
+
+[node name="Bat" type="MeshInstance3D" parent="Player/Camera3D/BaseballBat" unique_id=2134641526]
+mesh = SubResource("CylinderMesh_5h6n2")
 
 [node name="floor" type="StaticBody3D" parent="." unique_id=261565759]
 constant_linear_velocity = Vector3(0, -0.5, 0)
@@ -165,10 +189,10 @@ mesh = SubResource("BoxMesh_e7mkt")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1343423160]
 
 [node name="RageLabel" type="Label" parent="HUD" unique_id=1879399638]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 90.0
-offset_bottom = 53.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 43.0
 text = "RAGE: 0"
 label_settings = SubResource("LabelSettings_pttq6")
 
@@ -181,3 +205,37 @@ offset_bottom = 343.0
 text = "💥 CRATE DESTROYED
 +100 RAGE"
 label_settings = SubResource("LabelSettings_t4cvb")
+
+[node name="LevelLabel" type="Label" parent="HUD" unique_id=84175584]
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 129.0
+offset_bottom = 73.0
+text = "RAGE LEVEL: 1"
+
+[node name="UnlockPanel" type="Panel" parent="HUD" unique_id=532496419]
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 60.0
+offset_bottom = 130.0
+
+[node name="UnlockLabel" type="Label" parent="HUD/UnlockPanel" unique_id=283312582]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "🔓 UNLOCKS
+
+Level 1
+🔨 Hammer - UNLOCKED
+
+Level 2
+🏏 Baseball Bat - LOCKED
+
+Level 3
+🔨 Sledgehammer - LOCKED
+
+Level 4
+💥 Chaos Hammer - LOCKED
+
+Level 5
+☢️ Chaos Room - LOCKED"
