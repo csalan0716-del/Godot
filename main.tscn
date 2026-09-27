@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://pvlcv6ufw7k5"]
+
+[ext_resource type="Script" uid="uid://dd6mv72701avt" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cuplwn6nxtpl2" path="res://crate.gd" id="2_0xm2m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pttq6"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pttq6"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_yaxjh"]
+size = Vector3(0.35, 0.18, 0.18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pttq6"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pttq6"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4cvb"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t4cvb"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaxjh"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_364km"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_364km"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e7mkt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pttq6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t4cvb"]
+font_size = 32
+
+[node name="Main" type="Node3D" unique_id=2106189929]
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=259038488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+script = ExtResource("1_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1924297391]
+shape = SubResource("CapsuleShape3D_pttq6")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1431539182]
+transform = Transform3D(0.9998187, 0.016623858, -0.009287355, -0.016535467, 0.999818, 0.009514542, 0.009443833, -0.009359246, 0.9999116, 0, 0.65, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D" unique_id=917246537]
+target_position = Vector3(0, 0, -5)
+
+[node name="Hammer" type="Node3D" parent="Player/Camera3D" unique_id=1110087577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.35, -0.8)
+
+[node name="Handle" type="MeshInstance3D" parent="Player/Camera3D/Hammer" unique_id=1311857102]
+mesh = SubResource("CylinderMesh_pttq6")
+
+[node name="Head" type="MeshInstance3D" parent="Player/Camera3D/Hammer" unique_id=1389108053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+mesh = SubResource("BoxMesh_yaxjh")
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=261565759]
+constant_linear_velocity = Vector3(0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=1583607880]
+shape = SubResource("BoxShape3D_pttq6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=485228209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15607262, 0.2147007, -0.032445908)
+mesh = SubResource("BoxMesh_pttq6")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=2002186937]
+transform = Transform3D(0.9999619, 0.00012184146, -0.008725685, 0, 0.99990255, 0.01396218, 0.008726535, -0.013961649, 0.99986446, 0, 0, 0)
+
+[node name="BackWall" type="StaticBody3D" parent="." unique_id=897595705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall" unique_id=1922734593]
+shape = SubResource("BoxShape3D_t4cvb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackWall" unique_id=1688903557]
+mesh = SubResource("BoxMesh_t4cvb")
+
+[node name="FrontWall" type="StaticBody3D" parent="." unique_id=1276647871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FrontWall" unique_id=381996089]
+shape = SubResource("BoxShape3D_t4cvb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FrontWall" unique_id=1248549830]
+mesh = SubResource("BoxMesh_t4cvb")
+
+[node name="LeftWall" type="StaticBody3D" parent="." unique_id=993912361]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall" unique_id=1721575081]
+shape = SubResource("BoxShape3D_t4cvb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftWall" unique_id=1718417922]
+mesh = SubResource("BoxMesh_t4cvb")
+
+[node name="RightWall" type="StaticBody3D" parent="." unique_id=214347555]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall" unique_id=431255869]
+shape = SubResource("BoxShape3D_t4cvb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightWall" unique_id=363557395]
+mesh = SubResource("BoxMesh_t4cvb")
+
+[node name="Roof" type="StaticBody3D" parent="." unique_id=1978016924]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof" unique_id=216353602]
+shape = SubResource("BoxShape3D_yaxjh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Roof/CollisionShape3D" unique_id=498373878]
+mesh = SubResource("BoxMesh_364km")
+
+[node name="RoomLight" type="OmniLight3D" parent="." unique_id=1982993420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+light_energy = 3.0
+
+[node name="Crate" type="RigidBody3D" parent="." unique_id=239996255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+script = ExtResource("2_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crate" unique_id=1218684269]
+shape = SubResource("BoxShape3D_364km")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crate/CollisionShape3D" unique_id=411595138]
+mesh = SubResource("BoxMesh_e7mkt")
+
+[node name="Monitor" type="RigidBody3D" parent="." unique_id=614180048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, 0)
+script = ExtResource("2_0xm2m")
+max_health = 2
+rage_reward = 75
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monitor" unique_id=262259464]
+shape = SubResource("BoxShape3D_364km")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Monitor/CollisionShape3D" unique_id=704979236]
+mesh = SubResource("BoxMesh_e7mkt")
+
+[node name="TV" type="RigidBody3D" parent="." unique_id=2086990486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.7, 0)
+script = ExtResource("2_0xm2m")
+max_health = 5
+rage_reward = 150
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TV" unique_id=665749866]
+shape = SubResource("BoxShape3D_364km")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TV/CollisionShape3D" unique_id=122182492]
+mesh = SubResource("BoxMesh_e7mkt")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1343423160]
+
+[node name="RageLabel" type="Label" parent="HUD" unique_id=1879399638]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 90.0
+offset_bottom = 53.0
+text = "RAGE: 0"
+label_settings = SubResource("LabelSettings_pttq6")
+
+[node name="FeedbackLabel" type="Label" parent="HUD" unique_id=701332938]
+visible = false
+offset_left = 400.0
+offset_top = 250.0
+offset_right = 741.0
+offset_bottom = 343.0
+text = "💥 CRATE DESTROYED
++100 RAGE"
+label_settings = SubResource("LabelSettings_t4cvb")
